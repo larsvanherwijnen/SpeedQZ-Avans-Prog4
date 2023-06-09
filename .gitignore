@@ -1,1 +1,8 @@
+# Compiled class file
+*.class
+
+bin/
+.idea
 .vscode/
+
+.DS_Store
