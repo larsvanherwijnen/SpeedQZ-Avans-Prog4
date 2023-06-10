@@ -1,28 +1,29 @@
 package Controller;
 
-import View.GameScreen;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainController extends Application {
 
-    private final static int WIDTH = 1200;
-    private final static int HEIGHT = 800;
-
-
-    public static void main(String[] args) {
+    public void run(final String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) {
-        GameScreen gameScreen = new GameScreen();
-        
-        stage.setMinHeight(HEIGHT);
-        stage.setWidth(WIDTH);
+        GameController gameScreen = new GameController();
 
-        // stage.setResizable(false);
-        // of on mac 
+        Screen screen = Screen.getPrimary();
+        Rectangle2D screenBounds = screen.getVisualBounds();
+
+        // Set the minimum height of the stage to the screen height
+        stage.setMinHeight(screenBounds.getHeight());
+        stage.setWidth(screenBounds.getWidth());
+
+        stage.setResizable(false);
+
         stage.setFullScreen(true);
         stage.setScene(gameScreen);
         stage.show();

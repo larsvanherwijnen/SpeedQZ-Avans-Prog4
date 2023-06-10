@@ -10,9 +10,10 @@ import javafx.scene.paint.Color;
 public class ClockView extends Pane {
     private Label clockLabel;
     private final Background background;
+
     public ClockView(ClockModel clockModel) {
         this.background = new Background(new BackgroundFill(Color.PURPLE, null, null));
-        this.setBackground(this.background);    
+        this.setBackground(this.background);
         clockLabel = new Label();
         clockLabel.textProperty().bind(clockModel.countdownSecondsProperty().asString());
 

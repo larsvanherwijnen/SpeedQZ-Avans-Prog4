@@ -1,5 +1,6 @@
 package View;
 
+import Controller.GameController;
 import Model.ClockModel;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
@@ -14,7 +15,7 @@ public class GamePane extends HBox {
     private final Background background;
     private final int spacing = 20;
 
-    public GamePane() {
+    public GamePane(final GameController gameController) {
         this.setPadding(new Insets(spacing));
         this.background = new Background(new BackgroundFill(Color.BEIGE, null, null));
         this.setBackground(this.background);
@@ -22,7 +23,7 @@ public class GamePane extends HBox {
         this.setSpacing(spacing);
 
         ClockView clockView = new ClockView(new ClockModel(30));
-        ScoreView scoreView = new ScoreView();
+        ScoreView scoreView = new ScoreView(gameController);
 
         VBox gameInfo = new VBox();
         gameInfo.setSpacing(spacing);
@@ -30,7 +31,7 @@ public class GamePane extends HBox {
         gameInfo.getChildren().addAll(clockView, scoreView);
 
         PicturesView picturesView = new PicturesView();
-        InputView inputView = new InputView();
+        InputView inputView = new InputView(gameController);
 
         VBox game = new VBox();
         VBox.setVgrow(picturesView, Priority.ALWAYS);
