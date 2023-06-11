@@ -1,5 +1,8 @@
 package Controller;
 
+import java.io.IOException;
+
+import Dal.IncorrectCatFileException;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -12,20 +15,22 @@ public class MainController extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException, IncorrectCatFileException {
         GameController gameScreen = new GameController();
-
-        Screen screen = Screen.getPrimary();
-        Rectangle2D screenBounds = screen.getVisualBounds();
-
-        // Set the minimum height of the stage to the screen height
-        stage.setMinHeight(screenBounds.getHeight());
-        stage.setWidth(screenBounds.getWidth());
 
         stage.setResizable(false);
 
         stage.setFullScreen(true);
         stage.setScene(gameScreen);
+
+        //this needed to have content fill the entire screen, this is not needed if you run the application on Windows
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        // Set the stage dimensions to match the screen dimensions
+        stage.setWidth(bounds.getWidth());
+        stage.setHeight(bounds.getHeight());
+        
         stage.show();
     }
 }
