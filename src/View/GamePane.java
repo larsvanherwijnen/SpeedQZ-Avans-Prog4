@@ -30,7 +30,7 @@ public class GamePane extends HBox {
         VBox.setVgrow(scoreView, Priority.ALWAYS);
         gameInfo.getChildren().addAll(clockView, scoreView);
 
-        PicturesView picturesView = new PicturesView();
+        PicturesView picturesView = new PicturesView(gameController);
         InputView inputView = new InputView(gameController);
 
         VBox game = new VBox();

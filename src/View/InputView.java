@@ -29,12 +29,15 @@ class InputView extends VBox {
     private static final int fontSmall = 20;
     private static final int fontLarge = 42;
 
-    public InputView(GameController gameScreen) {
+    private GameController gameController;
+
+    public InputView(GameController gameController) {
+        this.gameController = gameController;
         this.setPadding(new Insets(spacingLarge));
         Background background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(background);
 
-        Text questionText = new Text("van snel naar langzaam");
+        Text questionText = new Text(gameController.getQuestion());
         questionText.setFill(Color.ORANGE);
         questionText.setFont(Font.font(fontSmall));
 
@@ -50,7 +53,7 @@ class InputView extends VBox {
         HBox answerBox = new HBox(spacingSmall, answerLabels);
 
         this.getChildren().addAll(questionText, answerBox);
-        gameScreen.setOnKeyPressed(this::handleKeyPressed);
+        gameController.setOnKeyPressed(this::handleKeyPressed);
     }
 
     void handleKeyPressed(KeyEvent event) {
@@ -94,7 +97,7 @@ class InputView extends VBox {
 
     private void handleEnterKeyPress() {
         if (answerBuilder.length() == MAX_LETTERS) {
-            System.out.println("Answer: " + answerBuilder.toString());
+            gameController.endRound(answerBuilder.toString());
         }
     }
 
