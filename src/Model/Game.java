@@ -9,6 +9,8 @@ public class Game {
     private DataModel dataModel;
 
     public Game() {
+        this.score = 0;
+        this.roundnr = 1;
     }
 
     public void createQuestion() {
@@ -23,6 +25,10 @@ public class Game {
 
     public int getRoundnr() {
         return roundnr;
+    }
+
+    public void updateRoundnr() {
+        this.roundnr++;
     }
 
     public void setScore(int score) {

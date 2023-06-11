@@ -25,7 +25,7 @@ public class ScoreView extends VBox {
         this.setBackground(this.background);
 
         Text round = new Text("Round");
-        Text roundValue = new Text("1");
+        Text roundValue = new Text(gameController.getRoundnr() + "");
         round.setFill(Color.WHITE);
         roundValue.setFill(Color.ORANGE);
         roundValue.setStroke(Color.WHITE);
