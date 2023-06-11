@@ -15,7 +15,6 @@ public class GameController extends Scene {
         super(new Pane());
         this.game = new Game();
         this.game.createQuestion();
-        this.game.getAnwser();
         GamePane gamePane = new GamePane(this);
         this.setRoot(gamePane);
     }

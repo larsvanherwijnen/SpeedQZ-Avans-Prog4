@@ -40,10 +40,4 @@ public class Game {
     public boolean validateAnswer(String answer) {
         return this.dataModel.getAnwser().equals(answer);
     }
-
-    public void getAnwser() {
-         System.out.println(this.dataModel.getAnwser());   
-    }
-
-
 }
