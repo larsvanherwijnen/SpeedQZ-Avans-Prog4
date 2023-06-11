@@ -20,17 +20,17 @@ public class FileIO {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 HashMap<String, Integer> options = new HashMap<>();
                 String line;
-                int lineCount = 1;
+                int lineCount = 0;
                 String question = "";
 
                 while ((line = br.readLine()) != null) {
+                    lineCount++;
                     String[] parts = line.split(" ");
-                    System.out.println(lineCount == 1 && parts.length == 2);
                     if (lineCount == 1 && parts.length == 2) {
                         throw new IncorrectCatFileException(
                                 "Fout op line " + lineCount + ": Geen instructies gevonden.");
-                    } else {
-                        question = parts[0];
+                    } else if (lineCount == 1) {
+                        question = line;
                     }
 
                     if (lineCount != 1) {
@@ -53,12 +53,11 @@ public class FileIO {
                     }
                 }
 
-                Catalog catalog = new Catalog(category);
+                Catalog catalog = new Catalog();
                 catalog.setQuestion(question);
                 catalog.setOptions(options);
 
                 lineCount++;
-
                 return catalog;
             } catch (IncorrectCatFileException e) {
                 System.out.println(e.getMessage());
