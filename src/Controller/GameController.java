@@ -30,7 +30,10 @@ public class GameController extends Scene {
     public void endRound(String answer) {
         //Stop timer
         //Check answer
-        this.game.validateAnswer(answer);
+        Boolean correctAnwser = this.game.validateAnswer(answer);
+        if (correctAnwser) {
+            //Update score
+        }
         //Update score
         //next round
 

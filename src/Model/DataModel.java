@@ -26,7 +26,7 @@ public class DataModel {
 
         int cardCount = 0;
         char startLetter = 'A';
-        
+
         for (Map.Entry<String, Integer> entry : imagesMap.entrySet()) {
             char currentLetter = (char) (startLetter + cardCount);
             images.put(String.valueOf(currentLetter), entry.getKey());
@@ -69,7 +69,7 @@ public class DataModel {
         StringBuilder sb = new StringBuilder();
 
         for (Map.Entry<String, Integer> entry : entryList) {
-            sb.append(entry.getKey() + " " +  entry.getValue() + "\n");
+            sb.append(entry.getKey());
         }
 
         return sb.toString();
