@@ -1,8 +1,5 @@
 package Controller;
 
-import java.io.IOException;
-
-import Dal.IncorrectCatFileException;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -15,7 +12,7 @@ public class MainController extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException, IncorrectCatFileException {
+    public void start(Stage stage) {
         GameController gameScreen = new GameController();
 
         stage.setResizable(false);
