@@ -25,13 +25,13 @@ public class ScoreView extends VBox {
         this.setBackground(this.background);
 
         Text round = new Text("Round");
-        Text roundValue = new Text(gameController.getRoundnr() + "");
+        Text roundValue = new Text(Integer.toString(gameController.getRoundnr()));
         round.setFill(Color.WHITE);
         roundValue.setFill(Color.ORANGE);
         roundValue.setStroke(Color.WHITE);
 
         Text score = new Text("Score");
-        Text scoreValue = new Text("0");
+        Text scoreValue = new Text(Integer.toString(gameController.getScore()));
         score.setFill(Color.WHITE);
         scoreValue.setFill(Color.ORANGE);
         scoreValue.setStroke(Color.WHITE);
