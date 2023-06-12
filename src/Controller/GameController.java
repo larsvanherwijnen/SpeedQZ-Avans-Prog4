@@ -1,7 +1,10 @@
 package Controller;
 
+import java.time.Clock;
 import java.util.HashMap;
+import java.util.TimerTask;
 
+import Model.ClockModel;
 import Model.Game;
 import View.GamePane;
 import javafx.scene.Scene;
@@ -12,6 +15,7 @@ public class GameController extends Scene {
 
     private Game game;
     private StackPane rootPane;
+    private ClockModel clockModel;
 
     public GameController() {
         super(new Pane());
@@ -45,20 +49,36 @@ public class GameController extends Scene {
     }
 
     public void endRound(String answer) {
+        this.clockModel.stopClock();
         // Stop timer
         // Check answer
         Boolean correctAnwser = this.game.validateAnswer(answer);
         if (correctAnwser) {
+            System.out.println("Correct!");
+            this.game.updateScore(clockModel.getTimeSecondsProperty().getValue());
+            System.out.println(this.game.getScore());
             // Update score
         }
+
+        changeView(new ScorePane(this, correctAnwser)));
+
         // Update score
         this.game.updateRoundnr();
+
         newRound();
     }
 
     public void newRound() {
         this.game.createQuestion();
-        changeView(new GamePane(this));
+        this.clockModel = new ClockModel();
+        this.clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
+            if (newTime.intValue() == 0) {
+                System.out.println("Time's up!");
+                endRound("");
+            }
+        });
+
+        changeView(new GamePane(this, clockModel));
     }
 
 }
