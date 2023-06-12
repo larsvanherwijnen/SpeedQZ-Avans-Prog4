@@ -15,14 +15,14 @@ public class GamePane extends HBox {
     private final Background background;
     private final int spacing = 20;
 
-    public GamePane(final GameController gameController) {
+    public GamePane(final GameController gameController, final ClockModel clockModel) {
         this.setPadding(new Insets(spacing));
         this.background = new Background(new BackgroundFill(Color.BEIGE, null, null));
         this.setBackground(this.background);
 
         this.setSpacing(spacing);
 
-        ClockView clockView = new ClockView(new ClockModel(30));
+        ClockView clockView = new ClockView(clockModel);
         ScoreView scoreView = new ScoreView(gameController);
 
         VBox gameInfo = new VBox();

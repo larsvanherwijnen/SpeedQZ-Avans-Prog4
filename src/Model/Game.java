@@ -35,6 +35,10 @@ public class Game {
         this.score = score;
     }
 
+    public void updateScore(int remainingTime) {
+        this.score += remainingTime;
+    }
+
     public HashMap<String, String> getImages() {
         return dataModel.getImages();
     }
