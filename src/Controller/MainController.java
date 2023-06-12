@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class MainController extends Application {
 
-    public void run(final String[] args) {
+    public void run(String[] args) {
         launch(args);
     }
 
@@ -20,11 +20,9 @@ public class MainController extends Application {
         stage.setFullScreen(true);
         stage.setScene(gameScreen);
 
-        //this needed to have content fill the entire screen, this is not needed if you run the application on Windows
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
 
-        // Set the stage dimensions to match the screen dimensions
         stage.setWidth(bounds.getWidth());
         stage.setHeight(bounds.getHeight());
         

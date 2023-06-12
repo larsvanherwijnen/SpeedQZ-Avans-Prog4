@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import Model.ClockModel;
 import Model.Game;
 import View.GamePane;
+import View.RoundScoreView;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -27,7 +28,7 @@ public class GameController extends Scene {
         newRound();
     }
 
-    public void changeView(final Pane pane) {
+    public void changeView(Pane pane) {
         this.rootPane.getChildren().clear();
         this.rootPane.getChildren().addAll(pane);
     }
@@ -50,19 +51,16 @@ public class GameController extends Scene {
 
     public void endRound(String answer) {
         this.clockModel.stopClock();
-        // Stop timer
-        // Check answer
+
         Boolean correctAnwser = this.game.validateAnswer(answer);
         if (correctAnwser) {
             System.out.println("Correct!");
             this.game.updateScore(clockModel.getTimeSecondsProperty().getValue());
             System.out.println(this.game.getScore());
-            // Update score
         }
 
-        changeView(new ScorePane(this, correctAnwser)));
+        changeView(new RoundScoreView(this, correctAnwser)));
 
-        // Update score
         this.game.updateRoundnr();
 
         newRound();

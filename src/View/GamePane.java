@@ -12,10 +12,10 @@ import javafx.scene.paint.Color;
 
 public class GamePane extends HBox {
 
-    private final Background background;
-    private final int spacing = 20;
+    private Background background;
+    private int spacing = 20;
 
-    public GamePane(final GameController gameController, final ClockModel clockModel) {
+    public GamePane(GameController gameController, ClockModel clockModel) {
         this.setPadding(new Insets(spacing));
         this.background = new Background(new BackgroundFill(Color.BEIGE, null, null));
         this.setBackground(this.background);
@@ -23,7 +23,7 @@ public class GamePane extends HBox {
         this.setSpacing(spacing);
 
         ClockView clockView = new ClockView(clockModel);
-        ScoreView scoreView = new ScoreView(gameController);
+        GameInfoView scoreView = new GameInfoView(gameController);
 
         VBox gameInfo = new VBox();
         gameInfo.setSpacing(spacing);

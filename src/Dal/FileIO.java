@@ -9,7 +9,7 @@ import java.util.HashMap;
 import Model.Catalog;
 
 public class FileIO {
-    public static Catalog readCatalog(final String category) {
+    public static Catalog readCatalog(String category) {
         try {
             java.io.File file = new File("Resources/files/cat_" + category + ".txt");
             if (!file.exists()) {

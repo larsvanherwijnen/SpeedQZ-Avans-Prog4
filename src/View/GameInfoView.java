@@ -10,16 +10,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ScoreView extends VBox {
+public class GameInfoView extends VBox {
 
     private Background background;
 
-    private final int spacingSmall = 10;
-    private final int spacingLarge = 20;
+    private int spacingSmall = 10;
+    private int spacingLarge = 20;
 
-    private final int fontSize = 44;
+    private int fontSize = 44;
 
-    public ScoreView(final GameController gameController) {
+    public GameInfoView(GameController gameController) {
         this.setPadding(new Insets(spacingLarge));
         this.background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(this.background);

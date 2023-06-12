@@ -20,7 +20,7 @@ public class ClockModel extends Task<Integer> {
     @Override
     protected Integer call() throws Exception {
         for (int count = 10; count >= 0 && !isCancelled(); count--) {
-            final int currentCount = count;
+            int currentCount = count;
             Platform.runLater(() -> timeSeconds.set(currentCount));
             Thread.sleep(1000);
         }

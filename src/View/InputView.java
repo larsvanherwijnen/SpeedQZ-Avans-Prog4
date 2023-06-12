@@ -17,17 +17,17 @@ import javafx.scene.text.Text;
 
 class InputView extends VBox {
 
-    private final int spacingSmall = 10;
-    private final int spacingLarge = 20;
+    private int spacingSmall = 10;
+    private int spacingLarge = 20;
 
-    private static final int MAX_LETTERS = 4;
+    private static int MAX_LETTERS = 4;
 
     private Label[] answerLabels;
     private StringBuilder answerBuilder;
     private Set<Character> usedLetters;
 
-    private static final int fontSmall = 20;
-    private static final int fontLarge = 42;
+    private static int fontSmall = 20;
+    private static int fontLarge = 42;
 
     private GameController gameController;
 

@@ -16,7 +16,7 @@ public class DataModel {
     private HashMap<String, String> images;
     private HashMap<String, Integer> imagesValues;
 
-    public void createQuestion(final String category) {
+    public void createQuestion(String category) {
         Catalog catalog = FileIO.readCatalog(category);
         this.category = category;
         this.question = catalog.getQuestion();
@@ -37,7 +37,7 @@ public class DataModel {
         this.images = images;
     }
 
-    public HashMap<String, Integer> selectRandom(final HashMap<String, Integer> options) {
+    public HashMap<String, Integer> selectRandom(HashMap<String, Integer> options) {
         List<Map.Entry<String, Integer>> entryList = new ArrayList<>(options.entrySet());
         Collections.shuffle(entryList);
         List<Map.Entry<String, Integer>> randomEntries = entryList.subList(0, 4);

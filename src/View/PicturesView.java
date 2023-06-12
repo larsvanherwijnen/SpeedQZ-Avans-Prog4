@@ -20,15 +20,15 @@ public class PicturesView extends GridPane {
     private Background background;
     private GameController gameController;
 
-    private final int spacing = 30;
+    private int spacing = 30;
 
     public PicturesView(GameController gameController) {
         this.gameController = gameController;
         this.background = new Background(new BackgroundFill(Color.PURPLE, null, null));
         this.setBackground(this.background);
-        this.setAlignment(Pos.CENTER); // Align the GridPane in the center
-        this.setHgap(spacing); // Set the horizontal gap between images
-        this.setVgap(spacing); // Set the horizontal gap between images
+        this.setAlignment(Pos.CENTER);
+        this.setHgap(spacing);
+        this.setVgap(spacing); 
         this.addImages();
     }
 

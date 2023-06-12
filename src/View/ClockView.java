@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 
 public class ClockView extends Pane {
     private Label clockLabel;
-    private final Background background;
+    private Background background;
 
     public ClockView(ClockModel clockModel) {
         this.background = new Background(new BackgroundFill(Color.PURPLE, null, null));
