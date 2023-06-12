@@ -18,7 +18,7 @@ public class ClockView extends Pane {
         this.setBackground(this.background);
         clockLabel = new Label();
         clockLabel.setFont(Font.font(72));
-        clockLabel.textProperty().bind(clockModel.countdownSecondsProperty().asString());
+        clockLabel.textProperty().bind(clockModel.getTimeSecondsProperty().asString());
         clockLabel.setPadding(new Insets(30));
         this.getChildren().add(getLabel());
     }
