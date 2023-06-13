@@ -1,44 +1,35 @@
 package Controller;
 
-import java.time.Clock;
 import java.util.HashMap;
-import java.util.TimerTask;
 
 import Model.ClockModel;
 import Model.Game;
-import View.GamePane;
-import View.RoundScoreView;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.application.Platform;
 
-public class GameController extends Scene {
+public class GameController {
 
     private Game game;
-    private StackPane rootPane;
+    private GameViewController gameViewController;
     private ClockModel clockModel;
 
-    public GameController() {
-        super(new Pane());
+    public GameController(GameViewController gameViewController) {
+        this.gameViewController = gameViewController;
+    }
+
+    public void startNewGame() {
         this.game = new Game();
-
-        this.rootPane = new StackPane();
-        this.setRoot(this.rootPane);
-
-        newRound();
     }
 
-    public void changeView(Pane pane) {
-        this.rootPane.getChildren().clear();
-        this.rootPane.getChildren().addAll(pane);
-    }
-
-    public HashMap<String, String> getImages() {
-        return this.game.getImages();
+    public String getAnwser() {
+        return this.game.getAnwser();
     }
 
     public String getQuestion() {
         return this.game.getQuestion();
+    }
+
+    public HashMap<String, String> getImages() {
+        return this.game.getImages();
     }
 
     public int getScore() {
@@ -49,21 +40,26 @@ public class GameController extends Scene {
         return this.game.getRoundnr();
     }
 
-    public void endRound(String answer) {
+    public int getRoundScore() {
+        return this.clockModel.getTimeSecondsProperty().getValue();
+    }
+
+    public boolean endRound(String answer) {
         this.clockModel.stopClock();
 
         Boolean correctAnwser = this.game.validateAnswer(answer);
+
         if (correctAnwser) {
-            System.out.println("Correct!");
-            this.game.updateScore(clockModel.getTimeSecondsProperty().getValue());
-            System.out.println(this.game.getScore());
+            this.game.updateScore(getRoundScore());
+        } else if (answer != "" && !correctAnwser) {
+            this.game.updateScore(-getRoundScore());
         }
 
-        changeView(new RoundScoreView(this, correctAnwser)));
+        if (!isLastRound()) {
+            this.game.updateRoundnr();
+        }
 
-        this.game.updateRoundnr();
-
-        newRound();
+        return correctAnwser;
     }
 
     public void newRound() {
@@ -71,12 +67,18 @@ public class GameController extends Scene {
         this.clockModel = new ClockModel();
         this.clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
             if (newTime.intValue() == 0) {
-                System.out.println("Time's up!");
-                endRound("");
+                Platform.runLater(() -> endRound(""));
             }
         });
 
-        changeView(new GamePane(this, clockModel));
+    }
+
+    public boolean isLastRound() {
+        return this.game.isLastRound();
+    }
+
+    public ClockModel getClockModel() {
+        return this.clockModel;
     }
 
 }

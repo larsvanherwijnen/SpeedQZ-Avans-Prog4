@@ -13,7 +13,7 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage stage) {
-        GameController gameScreen = new GameController();
+        GameViewController gameScreen = new GameViewController();
 
         stage.setResizable(false);
 

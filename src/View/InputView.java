@@ -3,7 +3,7 @@ package View;
 import java.util.HashSet;
 import java.util.Set;
 
-import Controller.GameController;
+import Controller.GameViewController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -29,15 +29,15 @@ class InputView extends VBox {
     private static int fontSmall = 20;
     private static int fontLarge = 42;
 
-    private GameController gameController;
+    private GameViewController gameViewController;
 
-    public InputView(GameController gameController) {
-        this.gameController = gameController;
+    public InputView(GameViewController gameViewController) {
+        this.gameViewController = gameViewController;
         this.setPadding(new Insets(spacingLarge));
         Background background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(background);
 
-        Text questionText = new Text(gameController.getQuestion());
+        Text questionText = new Text(this.gameViewController.getQuestion() + this.gameViewController.getAnwser());
         questionText.setFill(Color.ORANGE);
         questionText.setFont(Font.font(fontSmall));
 
@@ -53,7 +53,7 @@ class InputView extends VBox {
         HBox answerBox = new HBox(spacingSmall, answerLabels);
 
         this.getChildren().addAll(questionText, answerBox);
-        gameController.setOnKeyPressed(this::handleKeyPressed);
+        this.gameViewController.setOnKeyPressed(this::handleKeyPressed);
     }
 
     void handleKeyPressed(KeyEvent event) {
@@ -97,7 +97,7 @@ class InputView extends VBox {
 
     private void handleEnterKeyPress() {
         if (answerBuilder.length() == MAX_LETTERS) {
-            gameController.endRound(answerBuilder.toString());
+            this.gameViewController.endRound(answerBuilder.toString());
         }
     }
 

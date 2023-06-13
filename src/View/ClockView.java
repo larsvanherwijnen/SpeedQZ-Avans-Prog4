@@ -20,10 +20,6 @@ public class ClockView extends Pane {
         clockLabel.setFont(Font.font(72));
         clockLabel.textProperty().bind(clockModel.getTimeSecondsProperty().asString());
         clockLabel.setPadding(new Insets(30));
-        this.getChildren().add(getLabel());
-    }
-
-    public Label getLabel() {
-        return clockLabel;
+        this.getChildren().add(clockLabel);
     }
 }

@@ -1,6 +1,6 @@
 package View;
 
-import Controller.GameController;
+import Controller.GameViewController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
@@ -19,7 +19,7 @@ public class GameInfoView extends VBox {
 
     private int fontSize = 44;
 
-    public GameInfoView(GameController gameController) {
+    public GameInfoView(GameViewController gameController) {
         this.setPadding(new Insets(spacingLarge));
         this.background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(this.background);

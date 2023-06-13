@@ -2,7 +2,7 @@ package View;
 
 import java.util.Map;
 
-import Controller.GameController;
+import Controller.GameViewController;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,11 +18,11 @@ import javafx.scene.text.Text;
 public class PicturesView extends GridPane {
 
     private Background background;
-    private GameController gameController;
+    private GameViewController gameController;
 
     private int spacing = 30;
 
-    public PicturesView(GameController gameController) {
+    public PicturesView(GameViewController gameController) {
         this.gameController = gameController;
         this.background = new Background(new BackgroundFill(Color.PURPLE, null, null));
         this.setBackground(this.background);
@@ -34,7 +34,6 @@ public class PicturesView extends GridPane {
 
     public void addImages() {
         int cardCount = 0;
-        char startLetter = 'A';
 
         for (Map.Entry<String, String> option : gameController.getImages().entrySet()) {
             BorderPane options = new BorderPane();
@@ -45,11 +44,9 @@ public class PicturesView extends GridPane {
 
             imageView.setImage(image);
 
-            char currentLetter = (char) (startLetter + cardCount);
-
-            Text letterText = new Text(String.valueOf(currentLetter));
+            Text letterText = new Text(String.valueOf(option.getKey()));
             letterText.setFill(Color.WHITE);
-            letterText.setFont(Font.font(72));
+            letterText.setFont(Font.font("Verdana",72));
             letterText.setStroke(Color.BLACK);
             letterText.setStrokeWidth(2);
             StackPane.setAlignment(letterText, Pos.TOP_LEFT);

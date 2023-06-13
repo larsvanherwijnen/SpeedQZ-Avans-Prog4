@@ -21,6 +21,7 @@ public class ClockModel extends Task<Integer> {
     protected Integer call() throws Exception {
         for (int count = 10; count >= 0 && !isCancelled(); count--) {
             int currentCount = count;
+            System.out.println(currentCount);
             Platform.runLater(() -> timeSeconds.set(currentCount));
             Thread.sleep(1000);
         }
@@ -30,7 +31,6 @@ public class ClockModel extends Task<Integer> {
 
     public void startClock() {
         clockThread = new Thread(this);
-        clockThread.setDaemon(true);
         clockThread.start();
     }
 

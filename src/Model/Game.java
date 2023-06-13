@@ -37,6 +37,15 @@ public class Game {
 
     public void updateScore(int remainingTime) {
         this.score += remainingTime;
+
+        if (this.score < 0) {
+            this.score = 0;
+        }
+
+    }
+
+    public boolean isLastRound() {
+        return this.roundnr == 10;
     }
 
     public HashMap<String, String> getImages() {
@@ -49,5 +58,9 @@ public class Game {
 
     public boolean validateAnswer(String answer) {
         return this.dataModel.getAnwser().equals(answer);
+    }
+
+    public String getAnwser() {
+        return this.dataModel.getAnwser();
     }
 }

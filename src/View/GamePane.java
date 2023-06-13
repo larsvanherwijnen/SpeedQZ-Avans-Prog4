@@ -1,6 +1,6 @@
 package View;
 
-import Controller.GameController;
+import Controller.GameViewController;
 import Model.ClockModel;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
@@ -15,7 +15,7 @@ public class GamePane extends HBox {
     private Background background;
     private int spacing = 20;
 
-    public GamePane(GameController gameController, ClockModel clockModel) {
+    public GamePane(GameViewController gameController, ClockModel clockModel) {
         this.setPadding(new Insets(spacing));
         this.background = new Background(new BackgroundFill(Color.BEIGE, null, null));
         this.setBackground(this.background);
