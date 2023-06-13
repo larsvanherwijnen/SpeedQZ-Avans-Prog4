@@ -9,11 +9,9 @@ import javafx.application.Platform;
 public class GameController {
 
     private Game game;
-    private GameViewController gameViewController;
     private ClockModel clockModel;
 
-    public GameController(GameViewController gameViewController) {
-        this.gameViewController = gameViewController;
+    public GameController() {
     }
 
     public void startNewGame() {

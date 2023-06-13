@@ -3,11 +3,9 @@ package Controller;
 import java.util.HashMap;
 
 import Model.ClockModel;
-import Model.Game;
 import View.GamePane;
 import View.NewGameView;
 import View.RoundScoreView;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -22,12 +20,17 @@ public class GameViewController extends Scene {
         this.rootPane = new StackPane();
         this.setRoot(this.rootPane);
 
-        this.gameController = new GameController(this);
+        this.gameController = new GameController();
 
         this.openNewGameView();
     }
 
-    public void changeView(Pane pane, boolean clearSetOnKeyPressed) {
+    /*
+     * Changes the view to the given pane. If clearSetOnKeyPressed is true, the setOnKeyPressed is cleared.
+     * This is used to prevent the setOnKeyPressed form adding the score from the previous round in the RoundScoreView.
+     */
+
+     public void changeView(Pane pane, boolean clearSetOnKeyPressed) {
         this.rootPane.getChildren().clear();
         this.rootPane.getChildren().addAll(pane);
         if (clearSetOnKeyPressed) {
@@ -62,7 +65,7 @@ public class GameViewController extends Scene {
         ClockModel clockModel = this.gameController.getClockModel();
         clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
             if (newTime.intValue() == 0) {
-                Platform.runLater(() -> endRound(""));
+                endRound("");
             }
         });
         changeView(new GamePane(this, clockModel), false);

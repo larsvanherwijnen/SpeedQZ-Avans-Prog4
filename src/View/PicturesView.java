@@ -24,7 +24,7 @@ public class PicturesView extends GridPane {
 
     public PicturesView(GameViewController gameController) {
         this.gameController = gameController;
-        this.background = new Background(new BackgroundFill(Color.PURPLE, null, null));
+        this.background = new Background(new BackgroundFill(Color.DARKBLUE, null, null));
         this.setBackground(this.background);
         this.setAlignment(Pos.CENTER);
         this.setHgap(spacing);
