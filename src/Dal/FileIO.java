@@ -60,10 +60,10 @@ public class FileIO {
                 lineCount++;
                 return catalog;
             } catch (IncorrectCatFileException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
         } catch (IncorrectCatFileException | IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }
