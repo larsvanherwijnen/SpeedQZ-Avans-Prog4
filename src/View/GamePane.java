@@ -12,8 +12,9 @@ import model.ClockModel;
 
 public class GamePane extends HBox {
 
-    private Background background;
     private static final int SPACING = 20;
+
+    private Background background;
 
     public GamePane(final GameViewController gameController, final ClockModel clockModel) {
         this.setPadding(new Insets(SPACING));

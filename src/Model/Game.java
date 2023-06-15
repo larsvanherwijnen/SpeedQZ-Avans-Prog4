@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 public class Game {
 
+    private static final int FINALROUND = 100;
+
     private int score;
     private int roundnr;
     private DataModel dataModel;
-
-    private static final int FINALROUND = 100;
 
     public Game() {
         this.score = 0;

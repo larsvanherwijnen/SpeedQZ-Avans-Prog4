@@ -17,12 +17,12 @@ import javafx.scene.text.Text;
 
 public class PicturesView extends GridPane {
 
-    private Background background;
-    private GameViewController gameController;
-
     private static final int SPACING = 30;
     private static final int FONTSIZESMALL = 36;
     private static final int FONTSIZEALARGE = 72;
+
+    private Background background;
+    private GameViewController gameController;
 
     public PicturesView(final GameViewController gameController) {
         this.gameController = gameController;

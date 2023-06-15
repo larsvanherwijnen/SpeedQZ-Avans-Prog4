@@ -15,9 +15,10 @@ import javafx.scene.text.TextFlow;
 
 public class RoundScoreView extends HBox {
 
-    private Background background;
     private static final int SPACING = 20;
     private static final int FONTSIZE = 72;
+
+    private Background background;
 
     public RoundScoreView(final GameViewController gameController, final Boolean correctAnswer) {
         this.setPadding(new Insets(SPACING));

@@ -12,12 +12,11 @@ import javafx.scene.text.Text;
 
 public class GameInfoView extends VBox {
 
-    private Background background;
-
     private static final int SPACINGSMALL = 10;
     private static final int SPACINGLARGE = 20;
-
     private static final int FONTSIZE = 44;
+
+    private Background background;
 
     public GameInfoView(final GameViewController gameController) {
         this.setPadding(new Insets(SPACINGLARGE));
