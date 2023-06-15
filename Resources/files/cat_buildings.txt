@@ -1,0 +1,10 @@
+van klein naar groot
+Shanghai_World_Financial_Center 492
+Guangzhou_CTF_Finance_Centre 530
+Ping_An_Finance_Center 599 
+Shanghai_Tower 632 
+Burj_Khalifa 828 
+One_World_Trade_Center 541
+Abraj_Al-Bait_Clock_Tower 601
+Goldin_Finance_117 597
+Tianjin_CTF_Finance_Centre 530
