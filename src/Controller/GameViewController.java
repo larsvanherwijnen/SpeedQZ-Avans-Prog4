@@ -49,16 +49,6 @@ public class GameViewController extends Scene {
         return this.gameController.getImages();
     }
 
-    public void endRound(String answer) {
-        this.gameController.stopClock();
-        Boolean correctAnwser = this.gameController.endRound(answer);
-        changeView(new RoundScoreView(this, correctAnwser), true);
-    }
-
-    public String getAnwser() {
-        return this.gameController.getAnwser();
-    }
-
     public void startNewGame() {
         this.gameController.startNewGame();
         this.newRound();
@@ -75,6 +65,16 @@ public class GameViewController extends Scene {
             }
         });
         changeView(new GamePane(this, clockModel), false);
+    }
+
+    public void endRound(String answer) {
+        this.gameController.stopClock();
+        Boolean correctAnwser = this.gameController.endRound(answer);
+        changeView(new RoundScoreView(this, correctAnwser), true);
+    }
+
+    public String getAnwser() {
+        return this.gameController.getAnwser();
     }
 
     public String getQuestion() {

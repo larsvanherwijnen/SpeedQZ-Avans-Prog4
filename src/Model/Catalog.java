@@ -20,6 +20,7 @@ public class Catalog {
     }
 
     public HashMap<String, Integer> getOptions() {
+        //remove random duplicate options
         return options;
     }
 }

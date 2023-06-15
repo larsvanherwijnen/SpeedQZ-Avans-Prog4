@@ -50,6 +50,7 @@ public class ClockView extends StackPane {
                         () -> Color.color(colorRedProperty.get(), colorGreenProperty.get(), 0), colorRedProperty,
                         colorGreenProperty));
 
+
         clockLabel = new Label();
         clockLabel.setFont(Font.font(72));
         clockLabel.textProperty().bind(timeSecondsProperty.asString());
