@@ -1,6 +1,10 @@
 package model;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Catalog {
 
@@ -20,7 +24,22 @@ public class Catalog {
     }
 
     public HashMap<String, Integer> getOptions() {
-        //remove random duplicate options
-        return options;
+        return removeOptionsWithDuplicateValues(options);
+    }
+
+    private HashMap<String, Integer> removeOptionsWithDuplicateValues(final HashMap<String, Integer> options) {
+        HashMap<String, Integer> resultMap = new HashMap<>();
+
+        // Group the entries by value
+        Map<Integer, List<Map.Entry<String, Integer>>> groupedEntries = options.entrySet()
+                .stream()
+                .collect(Collectors.groupingBy(Map.Entry::getValue));
+
+        for (List<Map.Entry<String, Integer>> entries : groupedEntries.values()) {
+            Map.Entry<String, Integer> selectedEntry = entries.get(new Random().nextInt(entries.size()));
+            resultMap.put(selectedEntry.getKey(), selectedEntry.getValue());
+        }
+
+        return resultMap;
     }
 }
