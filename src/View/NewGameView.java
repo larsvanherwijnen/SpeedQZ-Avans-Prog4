@@ -28,12 +28,12 @@ public class NewGameView extends HBox {
         VBox roundBox = new VBox();
 
         String gameExplantion = "Spel: Opgavenrace\n\n"
-                + "Welkom bij Opgavenrace! Beantwoord 10 opgaven zo snel mogelijk."
-                + "Elke opgave heeft 4 afbeeldingen met waarden die willekeurig worden geselecteerd."
-                + "Je krijgt 30 seconden per opgave. De klok begint zodra de afbeeldingen verschijnen."
-                + "Voer de letters van de afbeeldingen in de juiste volgorde in, bijvoorbeeld \"C A B D\"."
-                + "Gebruik [BACKSPACE] om te wissen. Druk op [ENTER] om je antwoord in te dienen. Juist: extra seconden als punten."
-                + "Fout: aftrek van seconden (min. 0 punten)."
+                + "Welkom bij Opgavenrace! Beantwoord 10 opgaven zo snel mogelijk. "
+                + "Elke opgave heeft 4 afbeeldingen met waarden die willekeurig worden geselecteerd. "
+                + "Je krijgt 30 seconden per opgave. De klok begint zodra de afbeeldingen verschijnen. "
+                + "Voer de letters van de afbeeldingen in de juiste volgorde in, bijvoorbeeld \"C A B D\". "
+                + "Gebruik [BACKSPACE] om te wissen. Druk op [ENTER] om je antwoord in te dienen. Juist: extra seconden als punten. "
+                + "Fout: aftrek van seconden (min. 0 punten). "
                 + "Na 10 opgaven blijft het scherm zichtbaar tot je een toets indrukt om het spel te sluiten.\n\n"
                 + "Veel succes en plezier met Opgavenrace!";
 

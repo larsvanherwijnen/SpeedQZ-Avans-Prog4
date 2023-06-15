@@ -20,6 +20,8 @@ public class PicturesView extends GridPane {
     private static final int SPACING = 30;
     private static final int FONTSIZESMALL = 36;
     private static final int FONTSIZEALARGE = 72;
+    private static final int MAXWIDTH = 512;
+    private static final int MAXHEIGHT = 288;
 
     private Background background;
     private GameViewController gameController;
@@ -41,8 +43,11 @@ public class PicturesView extends GridPane {
             BorderPane options = new BorderPane();
             StackPane imageStackPane = new StackPane();
             ImageView imageView = new ImageView();
-
-            Image image = new Image("file:resources/pics/speed/" + option.getValue() + ".jpg");
+            imageStackPane.setMaxSize(MAXWIDTH, MAXHEIGHT);
+            imageView.setFitWidth(MAXWIDTH);
+            imageView.setFitHeight(MAXHEIGHT);
+            Image image = new Image(
+                    "file:resources/pics/" + gameController.getCategory() + "/" + option.getValue() + ".jpg");
 
             imageView.setImage(image);
 

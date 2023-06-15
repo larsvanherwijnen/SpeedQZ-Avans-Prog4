@@ -26,12 +26,20 @@ public class GameController {
         return this.game.getQuestion();
     }
 
+    public String getCategory() {
+        return this.game.getCategory();
+    }
+
     public HashMap<String, String> getImages() {
         return this.game.getImages();
     }
 
     public int getScore() {
         return this.game.getScore();
+    }
+
+    public int getScoreBeforeUpdate() {
+        return this.game.getScoreBeforeUpdate();
     }
 
     public int getRoundnr() {
@@ -53,15 +61,16 @@ public class GameController {
             this.game.updateScore(-getRoundScore());
         }
 
-        if (!isLastRound()) {
-            this.game.updateRoundnr();
-        }
-
         return correctAnwser;
     }
 
-    public void newRound() {
+    public void newRound(final boolean updateRoundnr) {
         this.game.createQuestion();
+        this.game.setScoreBeforeUpdate();
+        if (!isLastRound() && updateRoundnr) {
+            this.game.updateRoundnr();
+        }
+
         this.clockModel = new ClockModel();
     }
 

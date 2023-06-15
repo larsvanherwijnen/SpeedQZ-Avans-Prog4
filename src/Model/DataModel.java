@@ -17,11 +17,18 @@ public class DataModel {
     private String question;
     private HashMap<String, String> images;
     private HashMap<String, Integer> imagesValues;
+    private HashMap<String, Boolean> sortingDirectionAsc;
 
+    public DataModel() {
+        this.sortingDirectionAsc = new HashMap<>();
+        this.sortingDirectionAsc.put("speed", true);
+        this.sortingDirectionAsc.put("buildings", true);
+        this.sortingDirectionAsc.put("cars", false);
+    }
 
-    public void createQuestion(final String category) {
+    public void createQuestion() {
+        this.category = getRandomCategory();
         Catalog catalog = FileIO.readCatalog(category);
-        this.category = category;
         this.question = catalog.getQuestion();
         HashMap<String, Integer> imagesMap = this.selectRandom(catalog.getOptions());
         HashMap<String, String> images = new HashMap<>();
@@ -66,8 +73,14 @@ public class DataModel {
     }
 
     public String getAnwser() {
+        Boolean sortingDirectionAsc = this.sortingDirectionAsc.get(this.category);
+
         List<Map.Entry<String, Integer>> entryList = new ArrayList<>(imagesValues.entrySet());
-        Collections.sort(entryList, Comparator.comparing(Map.Entry::getValue));
+        if (sortingDirectionAsc) {
+            Collections.sort(entryList, Comparator.comparing(Map.Entry::getValue));
+        } else {
+            Collections.sort(entryList, Collections.reverseOrder(Comparator.comparing(Map.Entry::getValue)));
+        }
 
         StringBuilder sb = new StringBuilder();
 
@@ -78,4 +91,9 @@ public class DataModel {
         return sb.toString();
     }
 
+    private String getRandomCategory() {
+        ArrayList<String> categories = new ArrayList<>(this.sortingDirectionAsc.keySet());
+        int random = (int) (Math.random() * categories.size());
+        return categories.get(random);
+    }
 }

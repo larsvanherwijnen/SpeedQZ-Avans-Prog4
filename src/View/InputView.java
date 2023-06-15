@@ -34,7 +34,7 @@ public class InputView extends VBox {
         Background background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(background);
 
-        Text questionText = new Text(this.gameViewController.getQuestion() + this.gameViewController.getAnwser());
+        Text questionText = new Text(this.gameViewController.getQuestion());
         questionText.setFill(Color.ORANGE);
         questionText.setFont(Font.font(FONTSMALL));
 

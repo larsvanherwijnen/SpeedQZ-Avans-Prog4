@@ -4,9 +4,10 @@ import java.util.HashMap;
 
 public class Game {
 
-    private static final int FINALROUND = 100;
+    private static final int FINALROUND = 10;
 
     private int score;
+    private int scoreBeforeUpdate;
     private int roundnr;
     private DataModel dataModel;
 
@@ -18,11 +19,19 @@ public class Game {
     public void createQuestion() {
         DataModel dataModel = new DataModel();
         this.dataModel = dataModel;
-        this.dataModel.createQuestion("speed");
+        this.dataModel.createQuestion();
     }
 
     public int getScore() {
         return score;
+    }
+
+    public void setScoreBeforeUpdate() {
+        this.scoreBeforeUpdate = this.score;
+    }
+
+    public int getScoreBeforeUpdate() {
+        return this.scoreBeforeUpdate;
     }
 
     public int getRoundnr() {
@@ -52,6 +61,10 @@ public class Game {
 
     public String getQuestion() {
         return dataModel.getQuestion();
+    }
+
+    public String getCategory() {
+        return dataModel.getCategory();
     }
 
     public boolean validateAnswer(final String answer) {

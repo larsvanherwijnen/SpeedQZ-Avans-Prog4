@@ -30,35 +30,44 @@ public class RoundScoreView extends HBox {
         Text roundText = new Text("Ronde: " + Integer.toString(gameController.getRoundnr()));
         roundText.setFont(Font.font("Verdana", FONTSIZE));
 
-        Text scoreText = new Text("Score: " + Integer.toString(gameController.getScore()));
-        scoreText.setFont(Font.font("Verdana", FONTSIZE));
-        System.out.println(correctAnswer);
-        System.out.println(gameController.getRoundScore());
-        Text roundScore = new Text(correctAnswer ? " + " + Integer.toString(gameController.getRoundScore()) + ""
-                : " - " + (gameController.getScore() != 0 && !correctAnswer
-                        ? Integer.toString(gameController.getRoundScore())
-                        : "0"));
-        roundScore.setFont(Font.font("Verdana", FONTSIZE));
-        Color color = correctAnswer ? Color.GREEN : Color.RED;
-        roundScore.setFill(color);
-        Button button = null;
-
         if (!gameController.isLastRound()) {
-            button = new Button("Volgende ronde");
+            Text scoreText = new Text("Score: " + Integer.toString(gameController.getScoreBeforeUpdate()));
+            scoreText.setFont(Font.font("Verdana", FONTSIZE));
+            Text roundScore = new Text(correctAnswer ? " + " + Integer.toString(gameController.getRoundScore()) + ""
+                    : " - " + (gameController.getScore() != 0 && !correctAnswer
+                            ? Integer.toString(gameController.getRoundScore())
+                            : "0"));
+            roundScore.setFont(Font.font("Verdana", FONTSIZE));
+            Color color = correctAnswer ? Color.GREEN : Color.RED;
+            roundScore.setFill(color);
+
+            Button button = new Button("Volgende ronde");
             button.setOnAction(e -> {
-                gameController.newRound();
+                gameController.newRound(true);
             });
+
+            TextFlow scoreTextFlow = new TextFlow(scoreText, roundScore);
+            roundBox.getChildren().addAll(roundText, scoreTextFlow, button);
         } else {
-            button = new Button("Terug naar begin scherm");
+            Text scoreText = new Text("Eindscore: " + Integer.toString(gameController.getScore()));
+            scoreText.setFont(Font.font("Verdana", FONTSIZE));
+            HBox buttonBox = new HBox();
+            Button button = new Button("Terug naar begin scherm");
             button.setOnAction(e -> {
                 gameController.openNewGameView();
             });
+
+            Button button2 = new Button("Sluit spel af");
+            button2.setOnAction(e -> {
+                System.exit(0);
+            });
+            buttonBox.getChildren().addAll(button, button2);
+            buttonBox.setSpacing(SPACING);
+            buttonBox.setAlignment(Pos.CENTER);
+            roundBox.getChildren().addAll(roundText, scoreText, buttonBox);
         }
 
-        TextFlow scoreTextFlow = new TextFlow(scoreText, roundScore);
-
         this.setAlignment(Pos.CENTER);
-        roundBox.getChildren().addAll(roundText, scoreTextFlow, button);
         roundBox.setAlignment(Pos.CENTER);
         this.getChildren().add(roundBox);
     }

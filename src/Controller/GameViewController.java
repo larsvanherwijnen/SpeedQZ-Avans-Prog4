@@ -54,11 +54,11 @@ public class GameViewController extends Scene {
 
     public void startNewGame() {
         this.gameController.startNewGame();
-        this.newRound();
+        this.newRound(false);
     }
 
-    public void newRound() {
-        this.gameController.newRound();
+    public void newRound(final boolean updateRoundnr) {
+        this.gameController.newRound(updateRoundnr);
         ClockModel clockModel = this.gameController.getClockModel();
         clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
             if (newTime.intValue() == 0) {
@@ -76,12 +76,16 @@ public class GameViewController extends Scene {
         changeView(new RoundScoreView(this, correctAnwser), true);
     }
 
-    public String getAnwser() {
-        return this.gameController.getAnwser();
-    }
-
     public String getQuestion() {
         return this.gameController.getQuestion();
+    }
+
+    public String getCategory() {
+        return this.gameController.getCategory();
+    }
+
+    public int getScoreBeforeUpdate() {
+        return this.gameController.getScoreBeforeUpdate();
     }
 
     public int getScore() {
