@@ -12,6 +12,7 @@ public class ClockModel extends Task<Integer> {
     private static final int THREADSLEEPDURATION = 1000;
 
     private final int duration = 30;
+    private final double durationDouble = 30.0;
 
     private boolean running;
     private IntegerProperty timeSeconds = new SimpleIntegerProperty(duration);
@@ -42,8 +43,8 @@ public class ClockModel extends Task<Integer> {
         for (int count = duration; count >= 0 && running; count--) {
             int currentCount = count;
             Platform.runLater(() -> timeSeconds.set(currentCount));
-            colorRedProperty.set(1.0 - (currentCount / duration));
-            colorGreenProperty.set(currentCount / duration);
+            colorRedProperty.set(1.0 - (currentCount / durationDouble));
+            colorGreenProperty.set(currentCount / durationDouble);
             Thread.sleep(THREADSLEEPDURATION);
         }
 
