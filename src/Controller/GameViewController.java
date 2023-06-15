@@ -6,9 +6,11 @@ import Model.ClockModel;
 import View.GamePane;
 import View.NewGameView;
 import View.RoundScoreView;
+import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 public class GameViewController extends Scene {
     private StackPane rootPane;
@@ -26,11 +28,12 @@ public class GameViewController extends Scene {
     }
 
     /*
-     * Changes the view to the given pane. If clearSetOnKeyPressed is true, the setOnKeyPressed is cleared.
-     * This is used to prevent the setOnKeyPressed form adding the score from the previous round in the RoundScoreView.
+     * Changes the view to the given pane. If clearSetOnKeyPressed is true, the
+     * setOnKeyPressed is cleared.
+     * This is used to prevent the setOnKeyPressed form adding the score from the
+     * previous round in the RoundScoreView.
      */
-
-     public void changeView(Pane pane, boolean clearSetOnKeyPressed) {
+    public void changeView(Pane pane, boolean clearSetOnKeyPressed) {
         this.rootPane.getChildren().clear();
         this.rootPane.getChildren().addAll(pane);
         if (clearSetOnKeyPressed) {
@@ -47,6 +50,7 @@ public class GameViewController extends Scene {
     }
 
     public void endRound(String answer) {
+        this.gameController.stopClock();
         Boolean correctAnwser = this.gameController.endRound(answer);
         changeView(new RoundScoreView(this, correctAnwser), true);
     }
@@ -65,7 +69,9 @@ public class GameViewController extends Scene {
         ClockModel clockModel = this.gameController.getClockModel();
         clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
             if (newTime.intValue() == 0) {
-                endRound("");
+                PauseTransition pause = new PauseTransition(Duration.millis(500));
+                pause.setOnFinished(event -> endRound(""));
+                pause.play();
             }
         });
         changeView(new GamePane(this, clockModel), false);

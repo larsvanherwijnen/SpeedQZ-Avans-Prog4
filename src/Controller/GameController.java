@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import Model.ClockModel;
 import Model.Game;
-import javafx.application.Platform;
 
 public class GameController {
 
@@ -12,6 +11,7 @@ public class GameController {
     private ClockModel clockModel;
 
     public GameController() {
+        this.clockModel = new ClockModel();
     }
 
     public void startNewGame() {
@@ -63,12 +63,6 @@ public class GameController {
     public void newRound() {
         this.game.createQuestion();
         this.clockModel = new ClockModel();
-        this.clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
-            if (newTime.intValue() == 0) {
-                Platform.runLater(() -> endRound(""));
-            }
-        });
-
     }
 
     public boolean isLastRound() {
@@ -79,4 +73,7 @@ public class GameController {
         return this.clockModel;
     }
 
+    public void stopClock() {
+        this.clockModel.stopClock();
+    }
 }

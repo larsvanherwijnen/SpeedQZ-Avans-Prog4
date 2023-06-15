@@ -30,11 +30,7 @@ public class Game {
     public void updateRoundnr() {
         this.roundnr++;
     }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    
     public void updateScore(int remainingTime) {
         this.score += remainingTime;
 

@@ -3,7 +3,7 @@ package Model;
 import java.util.HashMap;
 
 public class Catalog {
-    
+
     private String question;
     private HashMap<String, Integer> options = new HashMap<String, Integer>();
 
@@ -21,5 +21,5 @@ public class Catalog {
 
     public HashMap<String, Integer> getOptions() {
         return options;
-    }    
+    }
 }

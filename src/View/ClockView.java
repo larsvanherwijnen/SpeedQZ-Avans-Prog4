@@ -1,6 +1,9 @@
 package View;
 
 import Model.ClockModel;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -21,8 +24,8 @@ public class ClockView extends StackPane {
         this.background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(this.background);
         this.setMinSize(250, 250);
-        
-        /* 
+
+        /*
          * Created a Pane to prevent the arc from moving when is size is changing.
          */
         Pane arcPane = new Pane();
@@ -37,15 +40,19 @@ public class ClockView extends StackPane {
         arc.setType(ArcType.ROUND);
         arc.setStrokeWidth(5);
         arc.lengthProperty().bind(clockModel.getTimeSecondsProperty().multiply(12));
-        arc.setFill(Color.GREEN);
 
-        clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
-            updateArcColor(newTime.intValue());
-        });
+        DoubleProperty colorGreenProperty = clockModel.getColorGreenProperty();
+        DoubleProperty colorRedProperty = clockModel.getColorRedProperty();
+        IntegerProperty timeSecondsProperty = clockModel.getTimeSecondsProperty();
+
+        arc.fillProperty()
+                .bind(Bindings.createObjectBinding(
+                        () -> Color.color(colorRedProperty.get(), colorGreenProperty.get(), 0), colorRedProperty,
+                        colorGreenProperty));
 
         clockLabel = new Label();
         clockLabel.setFont(Font.font(72));
-        clockLabel.textProperty().bind(clockModel.getTimeSecondsProperty().asString());
+        clockLabel.textProperty().bind(timeSecondsProperty.asString());
         clockLabel.setTextFill(Color.WHITE);
 
         arcPane.getChildren().add(arc);
@@ -53,15 +60,4 @@ public class ClockView extends StackPane {
         StackPane.setAlignment(clockLabel, Pos.CENTER);
     }
 
-    private void updateArcColor(int remainingSeconds) {
-        if (remainingSeconds >= 15) {
-            arc.setFill(Color.GREEN);
-        } else if (remainingSeconds >= 10) {
-            arc.setFill(Color.SADDLEBROWN);
-        } else if (remainingSeconds >= 3) {
-            arc.setFill(Color.DARKRED);
-        } else {
-            arc.setFill(Color.RED);
-        }
-    }
 }
