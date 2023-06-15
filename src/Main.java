@@ -1,8 +1,11 @@
-import Controller.MainController;
+import controller.MainController;
 
-public class Main {
-    
-    public static void main(String[] args) throws Exception {
+public final class Main {
+
+    private Main() {
+    }
+
+    public static void main(final String[] args) throws Exception {
         new MainController().run(args);
     }
 }

@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import Controller.GameViewController;
+import controller.GameViewController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -16,27 +16,28 @@ import javafx.scene.text.TextFlow;
 public class RoundScoreView extends HBox {
 
     private Background background;
-    private int spacing = 20;
+    private static final int SPACING = 20;
+    private static final int FONTSIZE = 72;
 
-    public RoundScoreView(GameViewController gameController, Boolean correctAnswer) {
-        this.setPadding(new Insets(spacing));
+    public RoundScoreView(final GameViewController gameController, final Boolean correctAnswer) {
+        this.setPadding(new Insets(SPACING));
         this.background = new Background(new BackgroundFill(Color.BEIGE, null, null));
         this.setBackground(this.background);
 
         VBox roundBox = new VBox();
 
         Text roundText = new Text("Ronde: " + Integer.toString(gameController.getRoundnr()));
-        roundText.setFont(Font.font("Verdana", 72));
+        roundText.setFont(Font.font("Verdana", FONTSIZE));
 
         Text scoreText = new Text("Score: " + Integer.toString(gameController.getScore()));
-        scoreText.setFont(Font.font("Verdana", 72));
+        scoreText.setFont(Font.font("Verdana", FONTSIZE));
         System.out.println(correctAnswer);
         System.out.println(gameController.getRoundScore());
         Text roundScore = new Text(correctAnswer ? " + " + Integer.toString(gameController.getRoundScore()) + ""
                 : " - " + (gameController.getScore() != 0 && !correctAnswer
                         ? Integer.toString(gameController.getRoundScore())
                         : "0"));
-        roundScore.setFont(Font.font("Verdana", 72));
+        roundScore.setFont(Font.font("Verdana", FONTSIZE));
         Color color = correctAnswer ? Color.GREEN : Color.RED;
         roundScore.setFill(color);
         Button button = null;

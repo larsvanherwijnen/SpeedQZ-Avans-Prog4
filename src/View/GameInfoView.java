@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import Controller.GameViewController;
+import controller.GameViewController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
@@ -14,13 +14,13 @@ public class GameInfoView extends VBox {
 
     private Background background;
 
-    private int spacingSmall = 10;
-    private int spacingLarge = 20;
+    private static final int SPACINGSMALL = 10;
+    private static final int SPACINGLARGE = 20;
 
-    private int fontSize = 44;
+    private static final int FONTSIZE = 44;
 
-    public GameInfoView(GameViewController gameController) {
-        this.setPadding(new Insets(spacingLarge));
+    public GameInfoView(final GameViewController gameController) {
+        this.setPadding(new Insets(SPACINGLARGE));
         this.background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(this.background);
 
@@ -36,10 +36,10 @@ public class GameInfoView extends VBox {
         scoreValue.setFill(Color.ORANGE);
         scoreValue.setStroke(Color.WHITE);
 
-        round.setFont(Font.font(fontSize));
-        roundValue.setFont(Font.font(fontSize));
-        score.setFont(Font.font(fontSize));
-        scoreValue.setFont(Font.font(fontSize));
+        round.setFont(Font.font(FONTSIZE));
+        roundValue.setFont(Font.font(FONTSIZE));
+        score.setFont(Font.font(FONTSIZE));
+        scoreValue.setFont(Font.font(FONTSIZE));
 
         VBox roundBox = new VBox(round, roundValue);
         roundBox.setAlignment(Pos.CENTER);
@@ -49,7 +49,7 @@ public class GameInfoView extends VBox {
 
         VBox mainBox = new VBox(roundBox, scoreBox);
         this.setAlignment(Pos.CENTER);
-        mainBox.setSpacing(spacingSmall);
+        mainBox.setSpacing(SPACINGSMALL);
 
         this.getChildren().add(mainBox);
     }

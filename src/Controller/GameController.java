@@ -1,9 +1,9 @@
-package Controller;
+package controller;
 
 import java.util.HashMap;
 
-import Model.ClockModel;
-import Model.Game;
+import model.ClockModel;
+import model.Game;
 
 public class GameController {
 
@@ -42,7 +42,7 @@ public class GameController {
         return this.clockModel.getTimeSecondsProperty().getValue();
     }
 
-    public boolean endRound(String answer) {
+    public boolean endRound(final String answer) {
         this.clockModel.stopClock();
 
         Boolean correctAnwser = this.game.validateAnswer(answer);

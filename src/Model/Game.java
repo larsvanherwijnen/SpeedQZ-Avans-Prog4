@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.HashMap;
 
@@ -7,6 +7,8 @@ public class Game {
     private int score;
     private int roundnr;
     private DataModel dataModel;
+
+    private static final int FINALROUND = 100;
 
     public Game() {
         this.score = 0;
@@ -30,8 +32,8 @@ public class Game {
     public void updateRoundnr() {
         this.roundnr++;
     }
-    
-    public void updateScore(int remainingTime) {
+
+    public void updateScore(final int remainingTime) {
         this.score += remainingTime;
 
         if (this.score < 0) {
@@ -41,7 +43,7 @@ public class Game {
     }
 
     public boolean isLastRound() {
-        return this.roundnr == 10;
+        return this.roundnr == FINALROUND;
     }
 
     public HashMap<String, String> getImages() {
@@ -52,7 +54,7 @@ public class Game {
         return dataModel.getQuestion();
     }
 
-    public boolean validateAnswer(String answer) {
+    public boolean validateAnswer(final String answer) {
         return this.dataModel.getAnwser().equals(answer);
     }
 

@@ -1,8 +1,8 @@
-package View;
+package view;
 
 import java.util.Map;
 
-import Controller.GameViewController;
+import controller.GameViewController;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,20 +20,22 @@ public class PicturesView extends GridPane {
     private Background background;
     private GameViewController gameController;
 
-    private int spacing = 30;
+    private static final int SPACING = 30;
+    private static final int FONTSIZESMALL = 36;
+    private static final int FONTSIZEALARGE = 72;
 
-    public PicturesView(GameViewController gameController) {
+    public PicturesView(final GameViewController gameController) {
         this.gameController = gameController;
         this.background = new Background(new BackgroundFill(Color.DARKBLUE, null, null));
         this.setBackground(this.background);
         this.setAlignment(Pos.CENTER);
-        this.setHgap(spacing);
-        this.setVgap(spacing); 
+        this.setHgap(SPACING);
+        this.setVgap(SPACING);
         this.addImages();
     }
 
     public void addImages() {
-        int cardCount = 0;
+        int imageCount = 0;
 
         for (Map.Entry<String, String> option : gameController.getImages().entrySet()) {
             BorderPane options = new BorderPane();
@@ -46,7 +48,7 @@ public class PicturesView extends GridPane {
 
             Text letterText = new Text(String.valueOf(option.getKey()));
             letterText.setFill(Color.WHITE);
-            letterText.setFont(Font.font("Verdana",72));
+            letterText.setFont(Font.font("Verdana", FONTSIZEALARGE));
             letterText.setStroke(Color.BLACK);
             letterText.setStrokeWidth(2);
             StackPane.setAlignment(letterText, Pos.TOP_LEFT);
@@ -55,14 +57,12 @@ public class PicturesView extends GridPane {
 
             Text name = new Text(option.getValue());
             name.setFill(Color.WHITE);
-            name.setFont(Font.font(36));
+            name.setFont(Font.font(FONTSIZESMALL));
             options.setCenter(imageStackPane);
             options.setBottom(name);
 
-            this.add(options, cardCount % 2, cardCount / 2);
-            cardCount++;
+            this.add(options, imageCount % 2, imageCount / 2);
+            imageCount++;
         }
-
     }
-
 }

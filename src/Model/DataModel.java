@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,16 +7,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Dal.FileIO;
+import dal.FileIO;
 
 public class DataModel {
+
+    private static final int OPTIONCOUNT = 4;
 
     private String category;
     private String question;
     private HashMap<String, String> images;
     private HashMap<String, Integer> imagesValues;
 
-    public void createQuestion(String category) {
+
+    public void createQuestion(final String category) {
         Catalog catalog = FileIO.readCatalog(category);
         this.category = category;
         this.question = catalog.getQuestion();
@@ -24,23 +27,23 @@ public class DataModel {
         HashMap<String, String> images = new HashMap<>();
         this.imagesValues = new HashMap<>();
 
-        int cardCount = 0;
+        int imageCount = 0;
         char startLetter = 'A';
 
         for (Map.Entry<String, Integer> entry : imagesMap.entrySet()) {
-            char currentLetter = (char) (startLetter + cardCount);
+            char currentLetter = (char) (startLetter + imageCount);
             images.put(String.valueOf(currentLetter), entry.getKey());
             imagesValues.put(String.valueOf(currentLetter), entry.getValue());
-            cardCount++;
+            imageCount++;
         }
-        
+
         this.images = images;
     }
 
-    public HashMap<String, Integer> selectRandom(HashMap<String, Integer> options) {
+    public HashMap<String, Integer> selectRandom(final HashMap<String, Integer> options) {
         List<Map.Entry<String, Integer>> entryList = new ArrayList<>(options.entrySet());
         Collections.shuffle(entryList);
-        List<Map.Entry<String, Integer>> randomEntries = entryList.subList(0, 4);
+        List<Map.Entry<String, Integer>> randomEntries = entryList.subList(0, OPTIONCOUNT);
         HashMap<String, Integer> randomHashMap = new HashMap<>();
 
         for (Map.Entry<String, Integer> entry : randomEntries) {
@@ -74,6 +77,5 @@ public class DataModel {
 
         return sb.toString();
     }
-    
 
 }

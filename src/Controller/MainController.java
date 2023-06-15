@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -7,12 +7,12 @@ import javafx.stage.Stage;
 
 public class MainController extends Application {
 
-    public void run(String[] args) {
+    public void run(final String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(final Stage stage) {
         GameViewController gameScreen = new GameViewController();
 
         stage.setResizable(false);
@@ -25,7 +25,7 @@ public class MainController extends Application {
 
         stage.setWidth(bounds.getWidth());
         stage.setHeight(bounds.getHeight());
-        
+
         stage.show();
     }
 }

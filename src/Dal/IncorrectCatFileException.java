@@ -1,6 +1,7 @@
-package Dal;
+package dal;
+
 public class IncorrectCatFileException extends Exception {
-    public IncorrectCatFileException(String message) {
+    public IncorrectCatFileException(final String message) {
         super(message);
     }
 }

@@ -1,9 +1,9 @@
-package View;
+package view;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import Controller.GameViewController;
+import controller.GameViewController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -17,46 +17,43 @@ import javafx.scene.text.Text;
 
 class InputView extends VBox {
 
-    private int spacingSmall = 10;
-    private int spacingLarge = 20;
-
-    private static int MAX_LETTERS = 4;
+    private static final int SPACINGSMALL = 10;
+    private static final int FONTSMALL = 20;
+    private static final int FONTLARGE = 42;
+    private static final int MAXLETTERS = 4;
 
     private Label[] answerLabels;
     private StringBuilder answerBuilder;
     private Set<Character> usedLetters;
 
-    private static int fontSmall = 20;
-    private static int fontLarge = 42;
-
     private GameViewController gameViewController;
 
-    public InputView(GameViewController gameViewController) {
+    public InputView(final GameViewController gameViewController) {
         this.gameViewController = gameViewController;
-        this.setPadding(new Insets(spacingLarge));
+        this.setPadding(new Insets(SPACINGSMALL));
         Background background = new Background(new BackgroundFill(Color.BLACK, null, null));
         this.setBackground(background);
 
         Text questionText = new Text(this.gameViewController.getQuestion() + this.gameViewController.getAnwser());
         questionText.setFill(Color.ORANGE);
-        questionText.setFont(Font.font(fontSmall));
+        questionText.setFont(Font.font(FONTSMALL));
 
         answerBuilder = new StringBuilder();
         usedLetters = new HashSet<>();
 
-        answerLabels = new Label[MAX_LETTERS];
-        for (int i = 0; i < MAX_LETTERS; i++) {
+        answerLabels = new Label[MAXLETTERS];
+        for (int i = 0; i < MAXLETTERS; i++) {
             answerLabels[i] = new Label("-");
-            answerLabels[i].setFont(Font.font(fontLarge));
+            answerLabels[i].setFont(Font.font(FONTLARGE));
         }
 
-        HBox answerBox = new HBox(spacingSmall, answerLabels);
+        HBox answerBox = new HBox(SPACINGSMALL, answerLabels);
 
         this.getChildren().addAll(questionText, answerBox);
         this.gameViewController.setOnKeyPressed(this::handleKeyPressed);
     }
 
-    void handleKeyPressed(KeyEvent event) {
+    private void handleKeyPressed(final KeyEvent event) {
         switch (event.getCode()) {
             case A:
             case B:
@@ -77,8 +74,8 @@ class InputView extends VBox {
         event.consume();
     }
 
-    private void handleLetterKeyPress(char letter) {
-        if (answerBuilder.length() < MAX_LETTERS && !usedLetters.contains(letter)) {
+    private void handleLetterKeyPress(final char letter) {
+        if (answerBuilder.length() < MAXLETTERS && !usedLetters.contains(letter)) {
             answerBuilder.append(letter);
             usedLetters.add(letter);
             updateAnswerLabels();
@@ -96,20 +93,20 @@ class InputView extends VBox {
     }
 
     private void handleEnterKeyPress() {
-        if (answerBuilder.length() == MAX_LETTERS) {
+        if (answerBuilder.length() == MAXLETTERS) {
             this.gameViewController.endRound(answerBuilder.toString());
         }
     }
 
     private void updateAnswerLabels() {
-        for (int i = 0; i < MAX_LETTERS; i++) {
+        for (int i = 0; i < MAXLETTERS; i++) {
             if (i < answerBuilder.length()) {
                 answerLabels[i].setText(answerBuilder.charAt(i) + "");
                 answerLabels[i].setTextFill(Color.ORANGE);
-                answerLabels[i].setFont(Font.font(fontLarge));
+                answerLabels[i].setFont(Font.font(FONTLARGE));
             } else {
                 answerLabels[i].setText("-");
-                answerLabels[i].setFont(Font.font(fontLarge));
+                answerLabels[i].setFont(Font.font(FONTLARGE));
             }
         }
     }

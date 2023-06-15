@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
@@ -9,12 +9,15 @@ import javafx.concurrent.Task;
 
 public class ClockModel extends Task<Integer> {
 
+    private static final int THREADSLEEPDURATION = 1000;
+
+    private final int duration = 30;
+
     private boolean running;
-    private IntegerProperty timeSeconds = new SimpleIntegerProperty(30);
+    private IntegerProperty timeSeconds = new SimpleIntegerProperty(duration);
     private DoubleProperty colorGreenProperty = new SimpleDoubleProperty(0.0);
     private DoubleProperty colorRedProperty = new SimpleDoubleProperty(1.0);
     private Thread clockThread;
-    private int duration = 30;
 
     public ClockModel() {
         this.running = true;
@@ -39,9 +42,9 @@ public class ClockModel extends Task<Integer> {
         for (int count = duration; count >= 0 && running; count--) {
             int currentCount = count;
             Platform.runLater(() -> timeSeconds.set(currentCount));
-            colorRedProperty.set(1.0 - (currentCount / 30.0));
-            colorGreenProperty.set(currentCount / 30.0);
-            Thread.sleep(1000);
+            colorRedProperty.set(1.0 - (currentCount / duration));
+            colorGreenProperty.set(currentCount / duration);
+            Thread.sleep(THREADSLEEPDURATION);
         }
 
         return null;

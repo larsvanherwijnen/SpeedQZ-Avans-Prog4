@@ -1,18 +1,21 @@
-package Controller;
+package controller;
 
 import java.util.HashMap;
 
-import Model.ClockModel;
-import View.GamePane;
-import View.NewGameView;
-import View.RoundScoreView;
 import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import model.ClockModel;
+import view.GamePane;
+import view.NewGameView;
+import view.RoundScoreView;
 
 public class GameViewController extends Scene {
+
+    private static final int PAUSEDURATION = 500;
+
     private StackPane rootPane;
     private GameController gameController;
 
@@ -33,7 +36,7 @@ public class GameViewController extends Scene {
      * This is used to prevent the setOnKeyPressed form adding the score from the
      * previous round in the RoundScoreView.
      */
-    public void changeView(Pane pane, boolean clearSetOnKeyPressed) {
+    public void changeView(final Pane pane, final boolean clearSetOnKeyPressed) {
         this.rootPane.getChildren().clear();
         this.rootPane.getChildren().addAll(pane);
         if (clearSetOnKeyPressed) {
@@ -59,7 +62,7 @@ public class GameViewController extends Scene {
         ClockModel clockModel = this.gameController.getClockModel();
         clockModel.getTimeSecondsProperty().addListener((obs, oldTime, newTime) -> {
             if (newTime.intValue() == 0) {
-                PauseTransition pause = new PauseTransition(Duration.millis(500));
+                PauseTransition pause = new PauseTransition(Duration.millis(PAUSEDURATION));
                 pause.setOnFinished(event -> endRound(""));
                 pause.play();
             }
@@ -67,7 +70,7 @@ public class GameViewController extends Scene {
         changeView(new GamePane(this, clockModel), false);
     }
 
-    public void endRound(String answer) {
+    public void endRound(final String answer) {
         this.gameController.stopClock();
         Boolean correctAnwser = this.gameController.endRound(answer);
         changeView(new RoundScoreView(this, correctAnwser), true);

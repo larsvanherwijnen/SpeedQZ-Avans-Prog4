@@ -1,4 +1,4 @@
-package Dal;
+package dal;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,10 +6,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-import Model.Catalog;
+import model.Catalog;
 
-public class FileIO {
-    public static Catalog readCatalog(String category) {
+public final class FileIO {
+
+    private FileIO() {
+    }
+
+    public static Catalog readCatalog(final String category) {
         try {
             java.io.File file = new File("Resources/files/cat_" + category + ".txt");
             if (!file.exists()) {
@@ -67,5 +71,4 @@ public class FileIO {
         }
         return null;
     }
-
 }
