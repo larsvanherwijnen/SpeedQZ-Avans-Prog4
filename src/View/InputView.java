@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-class InputView extends VBox {
+public class InputView extends VBox {
 
     private static final int SPACINGSMALL = 10;
     private static final int FONTSMALL = 20;
