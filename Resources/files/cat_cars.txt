@@ -1,0 +1,12 @@
+van duur naar goedkoop
+Aston_Martin_Valkyrie 3500000
+audi_rs3 102000
+BMW_M3 132000
+Bugatti_La_Voiture_Noire 18700000
+fiat_mulitpla 5000
+honda_civic 20000
+Pagani_Zonda_HP_Barchetta 15000000
+Huracan_performante 320000
+Rolls-Royce_Sweptail 13000000
+tesla_model_3 60000
+volkswagen_golf_tcr 90000
