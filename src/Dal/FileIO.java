@@ -1,9 +1,9 @@
 package dal;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import model.Catalog;
@@ -15,13 +15,12 @@ public final class FileIO {
 
     public static Catalog readCatalog(final String category) {
         try {
-            java.io.File file = new File("Resources/files/cat_" + category + ".txt");
-            if (!file.exists()) {
+            InputStream inputStream = FileIO.class.getResourceAsStream("/files/cat_" + category + ".txt");
+            if (inputStream == null) {
                 throw new IncorrectCatFileException("De file cat_" + category + ".txt bestaat niet.");
             }
 
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
                 HashMap<String, Integer> options = new HashMap<>();
                 String line;
                 int lineCount = 0;

@@ -46,9 +46,12 @@ public class PicturesView extends GridPane {
             imageStackPane.setMaxSize(MAXWIDTH, MAXHEIGHT);
             imageView.setFitWidth(MAXWIDTH);
             imageView.setFitHeight(MAXHEIGHT);
-            Image image = new Image(
-                    "file:resources/pics/" + gameController.getCategory() + "/" + option.getValue() + ".jpg");
 
+            String category = gameController.getCategory();
+            String value = option.getValue();
+            String imagePath = "/pics/" + category + "/" + value + ".jpg";
+
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
             imageView.setImage(image);
 
             Text letterText = new Text(String.valueOf(option.getKey()));

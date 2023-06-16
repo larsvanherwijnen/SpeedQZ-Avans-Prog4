@@ -34,7 +34,7 @@ public class RoundScoreView extends HBox {
             Text scoreText = new Text("Score: " + Integer.toString(gameController.getScoreBeforeUpdate()));
             scoreText.setFont(Font.font("Verdana", FONTSIZE));
             Text roundScore = new Text(correctAnswer ? " + " + Integer.toString(gameController.getRoundScore()) + ""
-                    : " - " + (gameController.getScore() != 0 && !correctAnswer
+                    : " - " + (gameController.getScoreBeforeUpdate() != 0 && !correctAnswer
                             ? Integer.toString(gameController.getRoundScore())
                             : "0"));
             roundScore.setFont(Font.font("Verdana", FONTSIZE));
